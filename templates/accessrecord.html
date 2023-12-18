@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    table,tr,th,td
+    {
+      border: 2px solid black;
+      border-collapse: collapse;
+      padding: 10px;
+    }
+  </style>
+
+</head>
+<body>
+  <center>
+
+    <h1>Displaying Topic Table</h1>
+
+    <table>
+      <tr>
+        <th>pk/id</th>
+        <th>name</th>
+        <th>date</th>
+        <th>auther</th>
+      </tr>
+      {% for wo in AccessRecord %}
+        <tr>
+          <td>{{ wo.pk }}</td>
+          <td>{{ wo.name }}</td>
+          <td>{{ wo.date }}</td>
+          <td>{{ wo.auther }}</td>
+        </tr>
+      {% endfor %}
+
+    </table>
+  </center>
+</body>
+</html>

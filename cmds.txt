@@ -1,0 +1,124 @@
+
+Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app1.models import *
+>>> ftb=Topic(topic_name='Football')
+>>> ftb.save()
+>>> rb=Topic(topic_name='Rugby')     
+>>> rb.save()  
+>>> rb=Topic.object.create(topic_name='Rugby')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Topic' has no attribute 'object'
+>>> rb=Topic.objects.create(topic_name='Rugby')
+>>> rb.save()                                   
+>>> bb=Topic.object.create(topic_name='Basketball') 
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Topic' has no attribute 'object'
+>>> bb=Topic.objects.create(topic_name='Basketball')
+>>> bb.save()                                       
+>>> bb=Webpage.objects.create(topic_name=bb,name='joden',url='http://127.0.0.1:8000/admin/app1/joden/')    
+>>> bb.save()
+>>> ck=Topic.objects.get_or_create(topic_name='cricket')[0] 
+>>> ck.save()
+>>> ck1=Webpage.objects.create(topic_name=ck,name='rohit',url='http://127.0.0.1:8000/admin/app1/rohit/') 
+>>> ck1[0].save()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: 'Webpage' object is not subscriptable
+>>> ck1.save()    
+>>> 
+
+
+
+
+--------------------------------------------------------
+
+
+
+PS D:\djangoprojects\muskanproject5\Scripts\project24> & D:/djangoprojects/muskanproject5/Scripts/Activate.
+ps1
+(muskanproject5) PS D:\djangoprojects\muskanproject5\Scripts\project24> python manage.py shell
+Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app1.models import *
+>>> ftb=Topic(topic_name='Football')
+>>> ftb.save()
+>>> rb=Topic(topic_name='Rugby')     
+>>> rb.save()  
+>>> rb=Topic.object.create(topic_name='Rugby')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Topic' has no attribute 'object'
+>>> rb=Topic.objects.create(topic_name='Rugby')
+>>> rb.save()                                   
+>>> bb=Topic.object.create(topic_name='Basketball') 
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Topic' has no attribute 'object'
+>>> bb=Topic.objects.create(topic_name='Basketball')
+>>> bb.save()                                       
+>>> bb=Webpage.objects.create(topic_name=bb,name='joden',url='http://127.0.0.1:8000/admin/app1/joden/')    
+>>> bb.save()
+>>> ck=Topic.objects.get_or_create(topic_name='cricket')[0] 
+>>> ck.save()
+>>> ck1=Webpage.objects.create(topic_name=ck,name='rohit',url='http://127.0.0.1:8000/admin/app1/rohit/')
+>>> ck1[0].save()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: 'Webpage' object is not subscriptable
+>>> ck1.save()
+>>>
+ *  History restored 
+
+py shell
+Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> Topic.objects.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Topic' is not defined
+>>> from app1.models import *
+>>> Topic.objects.all()       
+<QuerySet [<Topic: cricket>, <Topic: Football>, <Topic: Rugby>, <Topic: Basketball>]>
+>>> AccessRecord.objects.all()
+<QuerySet [<AccessRecord: xyz>]>
+>>> Topic.object.get(topic_name='cricket')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Topic' has no attribute 'object'        
+>>>                                       
+>>> 
+>>> 
+>>> Topic.objects.get(topic_name='cricket')
+<Topic: cricket>
+>>> Webpage.objects.get(topic_name='cricket')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "D:\djangoprojects\muskanproject5\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)       
+  File "D:\djangoprojects\muskanproject5\lib\site-packages\django\db\models\query.py", line 640, in get
+    raise self.model.MultipleObjectsReturned(
+app1.models.Webpage.MultipleObjectsReturned: get() returned more than one Webpage -- it returned 3!
+>>> Webpage.objects.filter(topic_name='cricket')
+<QuerySet [<Webpage: 1>, <Webpage: 2>, <Webpage: 4>]>
+>>> Topic.objects.get(topic_name='judo')         
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "D:\djangoprojects\muskanproject5\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)       
+  File "D:\djangoprojects\muskanproject5\lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+app1.models.Topic.DoesNotExist: Topic matching query does not exist. 
+>>> Topic.objects.filter(topic_name='judo')
+<QuerySet []>
+
+
+
+python manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
