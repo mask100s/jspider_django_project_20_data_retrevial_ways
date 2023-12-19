@@ -28,6 +28,12 @@ def webpage(request):
   # qlwo=Webpage.objects.exclude(topic_name='cricket').order_by(Length('name'))
   # qlwo=Webpage.objects.exclude(topic_name='cricket').order_by(Length('name'))[1:3:-1]
   # qlwo=Webpage.objects.filter(topic_name='cricket').order_by(Length('name'))
+  # qlwo=Webpage.objects.filter(name__startswith='R')
+  # qlwo=Webpage.objects.filter(name__endswith='l')
+  # qlwo=Webpage.objects.filter(name__contains='H')
+  # qlwo=Webpage.objects.filter(name__in=['sunil','dhoni','jorden'])
+  qlwo=Webpage.objects.filter(name__regex='t$')
+
   d={'Webpage':qlwo}
   return render(request,'webpage.html',context=d)
 
@@ -42,7 +48,14 @@ def insert_into_webpage(request):
   return HttpResponse(f'New data <b><u>{tn}, {n}, {u}, {e}</u></b> sccuessfully inserted in webpage table')
 
 def accessrecord(request):  
-  qlao=AccessRecord.objects.all()
+  # qlao=AccessRecord.objects.all()
+  # qlao=AccessRecord.objects.filter(id__gt = 1)
+  # qlao=AccessRecord.objects.filter(date__gt = '2023-11-2')
+  # qlao=AccessRecord.objects.filter(date__year = '2023')
+  # qlao=AccessRecord.objects.filter(date__month = '12')
+  # qlao=AccessRecord.objects.filter(date__day = '13')
+  # qlao=AccessRecord.objects.filter(date__day__gt = '13')
+
   d={'AccessRecord':qlao}
   return render(request,'accessrecord.html',context=d)
 
